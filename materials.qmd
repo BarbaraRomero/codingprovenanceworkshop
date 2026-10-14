@@ -1,0 +1,20 @@
+---
+title: "Workshop Materials"
+toc: false
+---
+
+The materials from each edition of the Coding Provenance Workshop are published as their own websites.
+
+::: {.card-grid .two}
+
+::: {.card}
+### [Materials · Coding Provenance Second Edition](https://barbararomero.github.io/codingprovenance2/)
+December 1 to 4, 2026 · Getty Research Institute, Los Angeles, USA
+:::
+
+::: {.card}
+### [Materials · Coding Provenance First Edition](https://provenance-lab.github.io/coding_provenance/)
+Materials from the first edition of the workshop.
+:::
+
+:::

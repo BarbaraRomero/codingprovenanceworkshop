@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - images/
+
+website:
+  title: "Coding Provenance Workshop"
+  description: "Coding Provenance Workshop — a collaboration between the Provenance Lab and the Getty Provenance Index"
+  site-url: "https://barbararomero.github.io/codingprovenanceworkshop/"
+  page-navigation: false
+  back-to-top-navigation: true
+  search: false
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: coding-provenance.qmd
+        text: Coding Provenance
+      - href: team.qmd
+        text: Team
+      - href: alumni.qmd
+        text: Alumni
+      - text: Workshop Materials
+        menu:
+          - href: materials.qmd
+            text: Overview
+          - href: https://barbararomero.github.io/codingprovenance2/
+            text: "Materials · Second Edition (2026)"
+          - href: https://provenance-lab.github.io/coding_provenance/
+            text: "Materials · First Edition"
+  page-footer:
+    center: |
+      © 2026 Coding Provenance Workshop — Licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).<br>
+      Reuse is encouraged — we happily promote changes of custody. Just be sure to write a good provenance record and cite this workshop.
+
+format:
+  html:
+    theme: [default, custom.scss]
+    toc: false
+    code-copy: true
+    code-overflow: wrap
+
+execute:
+  freeze: auto

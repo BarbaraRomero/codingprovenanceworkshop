@@ -1,0 +1,542 @@
+/*-- scss:defaults --*/
+
+// ---------- Palette: Getty blue + shades of blue and celeste ----------
+$getty-blue:   #003a70;   // deep blue — main accent
+$blue-mid:     #1d5fa8;   // links, secondary accents
+$celeste:      #4fb3e8;   // highlight
+$celeste-soft: #a9dcf5;   // borders, rules
+$celeste-pale: #eef8fd;   // light fills
+
+// ---------- Typography ----------
+$font-family-sans-serif: "Inter", "Helvetica Neue", Arial, sans-serif;
+$font-weight-base: 500;                     // Inter Medium for body text
+$headings-font-family: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+$headings-font-weight: 700;
+$headings-color: $getty-blue;
+
+// ---------- Colours ----------
+$body-bg: #ffffff;
+$body-color: #1f2933;
+$primary: $getty-blue;
+$link-color: $blue-mid;
+
+$navbar-bg: rgba(255, 255, 255, 0.72);
+$navbar-fg: $getty-blue;
+$navbar-hl: $celeste;
+$footer-bg: #ffffff;
+$footer-fg: $getty-blue;
+
+$code-color: $getty-blue;
+
+/*-- scss:rules --*/
+
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
+
+// No motion anywhere
+*, *::before, *::after { animation: none !important; transition: none !important; }
+html { scroll-behavior: auto !important; }
+
+// ---------- Text accents ----------
+strong, b { color: $getty-blue; font-weight: 700; }
+em { color: $blue-mid; }
+a { text-decoration-color: $celeste-soft; text-underline-offset: 3px; }
+a:hover { color: $celeste; }
+
+h1.title {
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+}
+
+h2 {
+  border-bottom: 2px solid $celeste-soft;
+  padding-bottom: 0.3rem;
+}
+
+h3, h4 { color: $blue-mid; }
+
+.quarto-title-block .description { color: $blue-mid; }
+
+// ---------- Top bar (content pages) ----------
+#quarto-header {
+  border-bottom: 3px solid $getty-blue;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+#quarto-header .navbar { background: transparent !important; }
+
+.navbar-title {
+  font-family: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.navbar-nav .nav-item {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+}
+
+// ---------- Footer ----------
+.nav-footer { border-top: 1px solid $celeste-soft; }
+.nav-footer-left, .nav-footer-right { display: none; }
+.nav-footer-center {
+  flex: 1 1 100%;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+// ---------- Tables, code, quotes ----------
+main table thead { background: $getty-blue; color: #fff; }
+main table thead th { border-color: $getty-blue; }
+main table tbody tr:nth-child(even) { background: $celeste-pale; }
+main table tbody td { height: 2.6rem; }
+main table caption { caption-side: bottom; color: $blue-mid; font-style: italic; }
+
+div.sourceCode {
+  background: $celeste-pale;
+  border: none;
+  border-left: 4px solid $celeste;
+}
+
+blockquote {
+  border-left: 4px solid $celeste;
+  color: $getty-blue;
+}
+
+// ---------- Under construction placeholder ----------
+.under-construction {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 220px;
+  margin: 1.5rem 0 2.5rem;
+  padding: 2rem;
+  border: 2px dashed $celeste-soft;
+  border-radius: 0.6rem;
+  background: $celeste-pale;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: $getty-blue;
+  text-align: center;
+
+  p { margin: 0; }
+}
+
+.under-construction.with-image {
+  min-height: 460px;
+  border: none;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+
+  // white veil so the label stays readable over the painting
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  > * { position: relative; }
+
+  .uc-label {
+    display: inline-block;
+    padding: 0.6rem 1.6rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: $getty-blue;
+  }
+
+  .uc-credit {
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-style: normal;
+    font-size: 0.75rem;
+    color: $getty-blue;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 0.15rem 0.5rem;
+  }
+
+  p:last-child { position: absolute; right: 0.75rem; bottom: 0.75rem; }
+}
+
+// Full-page variant: the painting fills the whole window behind the page
+body.full-bg {
+  .under-construction.with-image {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    margin: 0;
+    min-height: 0;
+    border-radius: 0;
+    padding-top: 64px;           // keep the label clear of the top bar
+  }
+
+  .under-construction.with-image::before { background: rgba(255, 255, 255, 0.45); }
+
+  .under-construction.with-image .uc-label {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    padding: 0.8rem 2.2rem;
+  }
+
+  .under-construction.with-image p:last-child { right: 1rem; bottom: 1rem; }
+
+  .quarto-title-block .title,
+  .quarto-title-block .description {
+    color: #000;
+  }
+
+  .nav-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .under-construction.with-image p:last-child { bottom: 7.5rem; }
+
+  @media (max-width: 700px) {
+    .under-construction.with-image p:last-child { bottom: 15.5rem; }
+  }
+}
+
+// ---------- Landing page ----------
+body.landing {
+  padding-top: 0 !important;
+
+  #quarto-header { display: none; }
+  #title-block-header { display: none; }
+}
+
+.landing-menu {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.5rem;
+  z-index: 1050;
+}
+
+.landing-menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  color: $getty-blue;
+}
+
+.landing-logo {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+}
+
+.burger {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
+
+  span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    background: $getty-blue;
+  }
+}
+
+.landing-menu-toggle:hover .burger span,
+.landing-menu-toggle[aria-expanded="true"] .burger span { background: $celeste; }
+
+.landing-menu-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  min-width: 260px;
+  background: #fff;
+  border: 1px solid $celeste-soft;
+  border-top: 4px solid $getty-blue;
+  box-shadow: 0 10px 30px rgba(0, 58, 112, 0.1);
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+
+  a {
+    padding: 0.55rem 1.25rem;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.1rem;
+    color: $getty-blue;
+    text-decoration: none;
+  }
+
+  a:hover { background: $celeste-pale; color: $blue-mid; }
+}
+
+.landing-menu-panel[hidden] { display: none; }
+
+.hero-bg {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: -3rem;
+  background-size: cover;
+  background-position: center 30%;
+
+
+  > .hero { position: relative; }
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 4rem;
+}
+
+.hero-title {
+  font-family: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 7.5vw, 7.5rem);
+  line-height: 1.02;
+  color: #000;
+
+  .line { white-space: nowrap; }
+}
+
+@media (max-width: 700px) {
+  .hero-title .line { white-space: normal; }
+}
+
+.hero-edition {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: $celeste;
+  margin: 2rem 0 0.75rem;
+}
+
+.hero-title + .hero-details { margin-top: 2rem; }
+
+.hero-details {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.6;
+  color: $getty-blue;
+}
+
+.landing-section {
+  max-width: 1100px;
+  margin: 0 auto 4rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin: 1.5rem 0 3rem;
+}
+
+.card-grid .card {
+  padding: 1.4rem;
+  border: 1px solid $celeste-soft;
+  border-top: 5px solid $getty-blue;
+  border-radius: 0.4rem;
+  background: #fff;
+}
+
+.card-grid .card:hover { border-top-color: $celeste; background: $celeste-pale; }
+.card-grid .card h3 { margin-top: 0; font-size: 1.25rem; font-weight: 700; }
+
+@media (max-width: 900px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+.card-grid.two { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 560px) { .card-grid, .card-grid.two { grid-template-columns: 1fr; } }
+.card-grid .card h3 a { color: $getty-blue; text-decoration: none; font-weight: 700; }
+
+// Landing page: light blue-greys; only the main title is black,
+// "Second Edition" stays celeste and section headings stay Getty blue
+$slate-dark:  #3d4f63;
+$slate:       #64788f;
+$slate-light: #93a4b8;
+$slate-line:  #d6e0ea;
+$slate-fill:  #f3f7fb;
+
+body.landing {
+  color: $slate-dark;
+
+  .hero-title { color: #000 !important; }
+  .hero-title + .hero-details { margin-top: 2rem; }
+
+.hero-details { color: $slate-dark; }
+
+  .landing-section h2 {
+    color: $getty-blue;
+    border-bottom-color: $celeste-soft;
+    font-size: 1.35rem;
+    margin-top: 2rem;
+    margin-bottom: 0.9rem;
+  }
+  .landing-section { font-size: 0.9rem; max-width: 960px; }
+  .card-grid { gap: 0.9rem; margin: 0.9rem 0 1.5rem; }
+  .card-grid .card { padding: 0.9rem 1rem; }
+  .card-grid .card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+  .card-grid .card p { font-size: 0.85rem; margin: 0; }
+  .landing-section > p { font-size: 1rem; color: $slate-dark; }
+  .landing-menu-panel a.sub { padding-left: 2.25rem; font-size: 0.95rem; color: $slate; }
+  .tba { display: block; font-style: italic; color: $slate; margin: 0.5rem 0 2rem; }
+  .under-construction { min-height: 110px; font-size: 1.15rem; margin: 0.9rem 0 1.5rem; padding: 1rem; }
+  main table { font-size: 0.85rem; }
+  main table tbody td { height: 2rem; }
+  .nav-footer-center { font-size: 0.75rem; }
+  .card-grid .card { border-color: $slate-line; border-top-color: $slate-light; background: #fff; }
+  .card-grid .card:hover { border-top-color: $getty-blue; background: $slate-fill; }
+  .card-grid .card h3 a { color: $slate-dark; }
+  .card p { color: $slate; }
+
+  .under-construction { background: $slate-fill; border-color: $slate-line; color: $slate; }
+
+  main table thead { background: $slate-light; }
+  main table thead th { border-color: $slate-light; }
+  main table tbody tr:nth-child(even) { background: $slate-fill; }
+  main table tbody td { border-color: $slate-line; }
+  main table caption { color: $slate; }
+
+  .burger span { background: $slate-dark; }
+  .landing-menu-toggle:hover .burger span,
+  .landing-menu-toggle[aria-expanded="true"] .burger span { background: $getty-blue; }
+  .landing-menu-panel { border-color: $slate-line; border-top-color: $getty-blue; }
+  .landing-menu-panel a { color: $slate-dark; }
+  .landing-menu-panel a:hover { background: $slate-fill; color: $getty-blue; }
+
+  .nav-footer { border-top-color: $slate-line; color: $slate; }
+  .nav-footer a { color: $slate-dark; }
+}
+
+// ---------- Team page ----------
+body.team-body .quarto-title-block {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.team-page {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  h3 { color: $getty-blue; font-size: 1.6rem; margin-top: 1.5rem; }
+  hr { border-color: $celeste-soft; opacity: 1; margin: 2.5rem 0; }
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 1.5rem 0 3rem;
+}
+
+@media (max-width: 800px) { .profile-grid { grid-template-columns: 1fr; } }
+
+.profile-card {
+  padding: 1rem 0 1.4rem;
+  border-top: 3px solid $getty-blue;     // blue detail
+  background: #fff;
+
+  h2 {
+    font-size: 1.3rem;
+    color: #000;
+    border: none;
+    margin: 0 0 0.4rem;
+    padding: 0;
+  }
+
+  .affiliation {
+    font-size: 0.95rem;
+    color: #000;
+    margin: 0;
+  }
+}
+
+// Team page in black, with only a few blue details (links, card top lines)
+body.team-body {
+  .quarto-title-block .title,
+  .team-page, .team-page h3, .team-page strong { color: #000; }
+  .team-page a { color: $getty-blue; }
+  .team-page hr { border-color: #ddd; }
+}
+
+// ---------- Bibliography & Resources page ----------
+body.resources-body .quarto-title-block {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+body.resources-body .quarto-title-block .title { color: #000; }
+
+.resources-page {
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  color: #000;
+
+  h3 { color: #000; font-size: 1.6rem; margin-top: 1.5rem; margin-bottom: 1.25rem; }
+  strong { color: #000; }
+  em { color: inherit; }
+  hr { border-color: #ddd; opacity: 1; margin: 2.5rem 0; }
+
+  p { margin-bottom: 1.1rem; }
+  a { color: $getty-blue; overflow-wrap: anywhere; }
+}
+
+.readings-box {
+  background: $celeste-pale;
+  border-top: 3px solid $getty-blue;
+  padding: 0.5rem 1.5rem 0.75rem;
+  margin: 1.5rem 0;
+
+  h3 { margin-top: 1rem; }
+}
+
+.link-list ul {
+  list-style: none;
+  padding: 0;
+  columns: 2;
+  column-gap: 2.5rem;
+
+  li {
+    break-inside: avoid;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid #e6e6e6;
+    font-weight: 700;
+  }
+
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+}
+
+@media (max-width: 700px) { .link-list ul { columns: 1; } }
+
+// ---------- Team ----------
+.team-member {
+  background: $celeste-pale;
+  border-left: 5px solid $getty-blue;
+  border-radius: 0.6rem;
+  padding: 1.25rem;
+}
+
+.team-member img {
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border: 3px solid $celeste;
+}

@@ -7,5 +7,5 @@ Main website for the Coding Provenance Workshop, built with [Quarto](https://qua
 
 Edition materials live on their own sites:
 
-- Second Edition (2026): https://barbararomero.github.io/codingprovenance2/
+- Second Edition (2026): https://provenance-lab.github.io/codingprovenance2/
 - First Edition: https://provenance-lab.github.io/coding_provenance/

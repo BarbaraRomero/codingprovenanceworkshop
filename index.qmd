@@ -16,7 +16,7 @@ body-classes: landing
     <a href="team.html">Team</a>
     <a href="alumni.html">Alumni</a>
     <a href="materials.html">Workshop Materials</a>
-    <a class="sub" href="https://provenance-lab.github.io/codingprovenance2/">Second Edition (2026) ↗</a>
+    <a class="sub" href="https://provenance-lab.github.io/coding_provenance2/">Second Edition (2026) ↗</a>
     <a class="sub" href="https://provenance-lab.github.io/coding_provenance/">First Edition ↗</a>
   </nav>
 </div>
@@ -60,7 +60,7 @@ Text
 ::: {.card-grid .two}
 
 ::: {.card}
-### [Second Edition — 2026](https://provenance-lab.github.io/codingprovenance2/)
+### [Second Edition — 2026](https://provenance-lab.github.io/coding_provenance2/)
 December 1 to 4, 2026 · Getty Research Institute, Los Angeles, USA
 :::
 

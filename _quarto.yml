@@ -25,7 +25,7 @@ website:
         menu:
           - href: materials.qmd
             text: Overview
-          - href: https://provenance-lab.github.io/codingprovenance2/
+          - href: https://provenance-lab.github.io/coding_provenance2/
             text: "Materials · Second Edition (2026)"
           - href: https://provenance-lab.github.io/coding_provenance/
             text: "Materials · First Edition"
